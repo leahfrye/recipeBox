@@ -13,10 +13,12 @@ export function addRecipe(name, ingredients) {
   }
 };
 
-export function editRecipe(recipe) {
+export function editRecipe(name, ingredients, id) {
   return {
     type: EDIT_RECIPE,
-    recipe
+    name,
+    ingredients,
+    id
   }
 }
 
@@ -29,14 +31,14 @@ export function deleteRecipe(id) {
 
 export function openDialog(name) {
   return {
-      type: OPEN_DIALOG,
-      name,
+    type: OPEN_DIALOG,
+    name,
   };
 };
 
 export function closeDialog(name) {
-    return {
-      type: CLOSE_DIALOG,
-      name
-    };
+  return {
+    type: CLOSE_DIALOG,
+    name
+  };
 };

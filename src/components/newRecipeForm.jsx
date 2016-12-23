@@ -7,11 +7,12 @@ class NewRecipeForm extends Component {
   render() {
     let { closeDialog, addRecipe, name } = this.props;
     let ingredients;
+    let recipeName;
 
     return (
-      <div>
-        <div className="modal-dialog">
-          <div className="modal-content">
+      <div className="modal-dialog add-recipe-modal-dialog">
+        <center>
+          <div className="modal-content add-recipe-modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal">
                 <span aria-hidden="true" onClick={(e) => closeDialog(name)}>&times;</span>
@@ -25,30 +26,34 @@ class NewRecipeForm extends Component {
             <div className="modal-body">
 
               <form>
+
                 <div className="form-group">
                   <label>Recipe Name</label>
-                  <input className="form-control" placeholder="Name" ref={(node) => {name = node}} />
+                  <input className="form-control" placeholder="Name" ref={(node) => {recipeName = node}} />
                 </div>
 
                 <div className="form-group">
                   <label>Ingredients</label>
-                  <textarea className="form-control" placeholder="Add Ingredients, seperated by commas" ref={(node) => {ingredients = node}}/>
+                  <textarea
+                    className="form-control"
+                    placeholder="Add Ingredients, seperated by commas"
+                    ref={(node) => {ingredients = node}}/>
                 </div>
 
-                <div
+                <button
                   className="btn btn-default"
                   onClick={(e) => {
-                    addRecipe(name.value, ingredients.value);
+                    addRecipe(recipeName.value, ingredients.value);
                     closeDialog(name);
-                  }}>Add</div>
+                    e.preventDefault();
+                  }}>Add</button>
 
               </form>
-
 
             </div>
 
           </div>
-        </div>
+        </center>
       </div>
     );
   }
