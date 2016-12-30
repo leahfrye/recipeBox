@@ -29,10 +29,11 @@ export function deleteRecipe(id) {
   };
 };
 
-export function openDialog(name) {
+export function openDialog(name, id) {
   return {
     type: OPEN_DIALOG,
     name,
+    id
   };
 };
 

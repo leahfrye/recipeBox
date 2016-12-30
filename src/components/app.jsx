@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Recipes from "./recipes";
 import NewRecipeForm from "./newRecipeForm";
+import DeleteRecipeBox from "./deleteRecipeBox";
 
 class App extends Component {
 
@@ -10,14 +11,18 @@ class App extends Component {
   let { dispatch, deleteRecipe, openDialog, dialog } = this.props;
   let dialogNewRecipe = "newRecipe";
   let dialogEditRecipe = "editRecipe";
+  let dialogDeleteRecipe = "deleteRecipe";
 
     return (
       <div>
 
         {dialog.name === dialogNewRecipe && dialog.dialogOpened ? <NewRecipeForm name={dialogNewRecipe}/> : null}
-        {dialog.name === dialogNewRecipe && dialog.dialogOpened ? <div className="overlay"></div> : null}
+        {dialog.name === (dialogNewRecipe && dialog.dialogOpened) || (dialogDeleteRecipe && dialog.dialogOpened) ?
+          <div className="overlay"></div> : null
+        }
+        {dialog.name === dialogDeleteRecipe && dialog.dialogOpened ? <DeleteRecipeBox name={dialogDeleteRecipe}/> : null}
 
-        <Recipes dialogEditRecipe={dialogEditRecipe} dialogNewRecipe={dialogNewRecipe}/>
+        <Recipes dialogEditRecipe={dialogEditRecipe} dialogNewRecipe={dialogNewRecipe} dialogDeleteRecipe={dialogDeleteRecipe}/>
 
       </div>
     );

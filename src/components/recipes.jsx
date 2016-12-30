@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import NewRecipeForm from "./newRecipeForm";
 import EditRecipeForm from "./editRecipeForm";
 
 import { editRecipe, deleteRecipe, openDialog } from "./../actions";
@@ -16,7 +15,16 @@ class Recipes extends Component {
 
   render() {
 
-  let { recipes, dispatch, deleteRecipe, openDialog, dialog, dialogNewRecipe, dialogEditRecipe } = this.props;
+  let {
+    recipes,
+    dispatch,
+    deleteRecipe,
+    openDialog,
+    dialog,
+    dialogNewRecipe,
+    dialogEditRecipe,
+    dialogDeleteRecipe
+  } = this.props;
 
     return (
       <div>
@@ -30,14 +38,17 @@ class Recipes extends Component {
                 <li key={index} className="recipe" style={index % 2 === 0 ? {marginRight: "30px"} : {marginRight: "0px"}}>
                   {this.state.recipeIndex !== index || this.state.recipeIndex === "none" || !dialog.dialogOpened ?
                     <div>
-                      <h3>{recipe.name}</h3>
-                      <ul>
-                        {recipe.ingredients.map((ingredient, index) => {
-                          return (
-                            <li key={index}>- {ingredient}</li>
-                          );
-                        })}
-                      </ul>
+                      <h3>{recipe.name ? recipe.name : "Untitled"}</h3>
+                        {recipe.ingredients.length !== 0 ?
+                          <ul>
+                            {recipe.ingredients.map((ingredient, index) => {
+                              return (
+                                <li key={index}>{"- " + ingredient}</li>
+                              );
+                            })}
+                          </ul>
+                          : <p>No ingredients yet</p>
+                        }
 
                       <div className="button-container">
                         <button
@@ -52,7 +63,7 @@ class Recipes extends Component {
                         </button>
                         <button
                           className="btn btn-sm btn-danger"
-                          onClick={(e) => deleteRecipe(recipe.id)}>
+                          onClick={(e) => openDialog(dialogDeleteRecipe)}>
                           Delete
                         </button>
                       </div>

@@ -14,14 +14,14 @@ let reducer = (state, action) => {
 
     case "ADD_RECIPE": {
       let newState = merge({}, state);
-      let ingredientsArray = action.ingredients.replace(/\s/g, '').split(",");
+      let ingredientsArray = action.ingredients.replace(/\s/g, '').split(",").filter((i) => {return i !== ""});
       newState.recipes.push({id: newState.recipes.length, name: action.name, ingredients: ingredientsArray});
       return newState;
     }
 
     case "EDIT_RECIPE": {
       let newState = merge({}, state);
-      let ingredientsArray = action.ingredients.replace(/\s/g, '').split(",");
+      let ingredientsArray = action.ingredients.replace(/\s/g, '').split(",").filter((i) => {return i !== ""});
       newState.recipes[action.id] = {name: action.name, ingredients: ingredientsArray, id: action.id};
       return newState;
     }

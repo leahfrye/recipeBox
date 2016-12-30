@@ -24,7 +24,6 @@ class EditRecipeForm extends Component {
     let { closeDialog, editRecipe, recipe, dialogName, recipes } = this.props;
     let recipeName;
     let ingredients;
-    console.log(recipes);
     return (
       <div>
         <div className="modal-dialog edit-recipe-dialog">
