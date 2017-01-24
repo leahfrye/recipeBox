@@ -24,6 +24,9 @@ class EditRecipeForm extends Component {
     let { closeDialog, editRecipe, recipe, dialogName, recipes } = this.props;
     let recipeName;
     let ingredients;
+
+    let index = recipes.indexOf(recipe);
+
     return (
       <div>
         <div className="modal-dialog edit-recipe-dialog">
@@ -52,8 +55,7 @@ class EditRecipeForm extends Component {
               style={{marginRight: "10px"}}
               onClick={(e) => {
                 e.preventDefault();
-
-                editRecipe(this.state.name, this.state.ingredients, recipe.id);
+                editRecipe(this.state.name, this.state.ingredients, recipe.id, index);
                 closeDialog(dialogName);
               }}>Save</button>
 
@@ -75,14 +77,14 @@ class EditRecipeForm extends Component {
 let mapStateToProps = (state) => {
   let { recipes } = state;
   return {
-    recipes
+    recipes,
   };
 };
 
 let mapDispatchToProps = (dispatch, ownProps) => {
   return {
     closeDialog: () => dispatch(closeDialog()),
-    editRecipe: (name, ingredients, id) => dispatch(editRecipe(name, ingredients, id)),
+    editRecipe: (name, ingredients, id, index) => dispatch(editRecipe(name, ingredients, id, index)),
   };
 };
 

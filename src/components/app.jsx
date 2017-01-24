@@ -9,6 +9,8 @@ class App extends Component {
   render() {
 
   let { dispatch, deleteRecipe, openDialog, dialog } = this.props;
+
+  // Dialog box names, for telling which dialog to open
   let dialogNewRecipe = "newRecipe";
   let dialogEditRecipe = "editRecipe";
   let dialogDeleteRecipe = "deleteRecipe";
@@ -17,9 +19,10 @@ class App extends Component {
       <div>
 
         {dialog.name === dialogNewRecipe && dialog.dialogOpened ? <NewRecipeForm name={dialogNewRecipe}/> : null}
-        {dialog.name === (dialogNewRecipe && dialog.dialogOpened) || (dialogDeleteRecipe && dialog.dialogOpened) ?
-          <div className="overlay"></div> : null
-        }
+
+        {(dialog.name !== dialogEditRecipe) && dialog.dialogOpened ?
+          <div className="overlay"></div> : null}
+
         {dialog.name === dialogDeleteRecipe && dialog.dialogOpened ? <DeleteRecipeBox name={dialogDeleteRecipe}/> : null}
 
         <Recipes dialogEditRecipe={dialogEditRecipe} dialogNewRecipe={dialogNewRecipe} dialogDeleteRecipe={dialogDeleteRecipe}/>
