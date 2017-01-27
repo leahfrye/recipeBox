@@ -6,20 +6,11 @@ import {
   deleteRecipe,
   openDialog,
   closeDialog
-} from "./actions";
+} from "./../actions/changeRecipes";
 
 let reducer = (state, action) => {
 
   switch(action.type) {
-    case "OPEN_DIALOG": {
-      let newState = Object.assign({}, state, state = {dialog: {name: action.name, dialogOpened: true, recipeId: action.id}});
-      return newState;
-    }
-
-    case "CLOSE_DIALOG": {
-      let newState = Object.assign({}, state, state = {dialog: {name: action.name, dialogOpened: false, previousRecipeId: action.previousRecipeId}});
-      return newState;
-    }
 
     case "SET_ITEM_TO_CHANGE": {
       let newState = Object.assign({}, state, state = {itemToChange: {type: action.typeOfChange, id: action.id}});
@@ -43,6 +34,16 @@ let reducer = (state, action) => {
     case "DELETE_RECIPE": {
       let newState = Object.assign({}, state);
       newState.recipes = state.recipes.filter(recipe => recipe.id !== action.id);
+      return newState;
+    }
+
+    case "OPEN_DIALOG": {
+      let newState = Object.assign({}, state, state = {dialog: {name: action.name, dialogOpened: true, recipeId: action.id}});
+      return newState;
+    }
+
+    case "CLOSE_DIALOG": {
+      let newState = Object.assign({}, state, state = {dialog: {name: action.name, dialogOpened: false, previousRecipeId: action.previousRecipeId}});
       return newState;
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { closeDialog, addRecipe } from "./../actions";
+import { closeDialog } from "./../actions/dialogs";
+import { addRecipe } from "./../actions/changeRecipes";
 
 class NewRecipeForm extends Component {
 

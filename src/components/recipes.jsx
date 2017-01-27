@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import EditRecipeForm from "./editRecipeForm";
 
-import { editRecipe, deleteRecipe, openDialog } from "./../actions";
+import { editRecipe, deleteRecipe } from "./../actions/changeRecipes";
+import { openDialog } from "./../actions/dialogs";
 
 class Recipes extends Component {
 
@@ -10,16 +11,16 @@ class Recipes extends Component {
     super(props);
     this.state = {
       updating: false,
+      selected: false,
+      selectedIndex: -1,
     };
   };
 
   handleStyle(index, recipeId) {
     let { dialog, itemToChange } = this.props;
-    let isOdd = index % 2 === 0;
 
-    let selectedStyle = {backgroundColor: "#ccc", marginRight: (isOdd ? "30px" : "0px")};
-    let transitionStyle = {opacity: "0", overflow: "hidden", transition: ".2s", marginRight: (isOdd ? "30px" : "0px")};
-    let defaultSyle = {marginRight: (isOdd ? "30px" : "0px")};
+    let selectedStyle = {backgroundColor: "#ccc"};
+    let transitionStyle = {opacity: "0", overflow: "hidden", transition: ".2s"};
 
     if (dialog.recipeId === recipeId && !this.state.updating && dialog.name === this.props.dialogDeleteRecipe) {
       return selectedStyle;
@@ -30,7 +31,21 @@ class Recipes extends Component {
     }
 
     else {
-      return defaultSyle;
+      return this.state.selected ? {} : {cursor: "pointer"};
+    }
+
+  }
+
+  handleVisibility(index) {
+    this.setState({selectedIndex: index, selected: this.state.selected ? false : true});
+  }
+
+  handleVisibilityClass(index) {
+    if ((this.state.selected && this.state.selectedIndex === index)) {
+      return {display: "inline"};
+    }
+    else {
+      return {display: "none"};
     }
   }
 
@@ -42,6 +57,7 @@ class Recipes extends Component {
       setTimeout(() => {
         this.setState({updating: false});
         this.props.deleteRecipe(itemToChange.id);
+        this.setState({selected: false});
       }, 200);
     }
 
@@ -60,10 +76,13 @@ class Recipes extends Component {
       dialogDeleteRecipe
     } = this.props;
 
+    console.log(this.state.selectedIndex);
+
+
     let placeholderStyle = {
       backgroundColor: "blue"
     };
-    console.log(this.state.updating)
+
     return (
       <div>
 
@@ -73,45 +92,58 @@ class Recipes extends Component {
           <ul>
 
             {recipes.map((recipe, index) => {
-              let selectedRecipeId = this.props.dialog.recipeId;
 
+              let selectedRecipeId = this.props.dialog.recipeId;
               return (
 
-                <li key={index} className="recipe" style={this.handleStyle(index, recipe.id)} ref="recipe">
+                <li
+                  key={index}
+                  className={this.state.selected ? "recipe" : "recipe hoverStyle"}
+                  style={this.handleStyle(index, recipe.id)}
+                  ref="recipe">
+
                   { selectedRecipeId !== recipe.id ||
                     dialog.name !== dialogEditRecipe ||
                     selectedRecipeId === undefined ||
                     !dialog.dialogOpened ?
 
                     <div>
-                      <h3>{recipe.name ? recipe.name : "Untitled"}</h3>
-                        {recipe.ingredients.length !== 0 ?
-                          <ul>
-                            {recipe.ingredients.map((ingredient, index) => {
-                              return (
-                                <li key={index}>{"- " + ingredient}</li>
-                              );
-                            })}
-                          </ul>
-                          : <p>No ingredients yet</p>
-                        }
+                      <h3
+                        onClick={(() => !dialog.dialogOpened ? this.handleVisibility(index) : null)}>
+                        {recipe.name ? recipe.name : "Untitled"}
+                        <div className="expand">{this.state.selected && this.state.selectedIndex === index ? "-" : "+"}</div>
+                      </h3>
 
-                      <div className="button-container">
-                        <button
-                          key={index}
-                          className="btn btn-sm btn-default"
-                          style={{marginRight: "10px"}}
-                          onClick={(e) => {
-                            openDialog(dialogEditRecipe, recipe.id);
-                          }}>
-                          Edit
-                        </button>
-                        <button
-                          className="btn btn-sm btn-danger"
-                          onClick={(e) => openDialog(dialogDeleteRecipe, recipe.id)}>
-                          Delete
-                        </button>
+                        <div style={this.handleVisibilityClass(index)}>
+                          {recipe.ingredients.length !== 0 ?
+                            <ul>
+                              {recipe.ingredients.map((ingredient, index) => {
+                                return (
+                                  <li key={index}>{"- " + ingredient}</li>
+                                );
+                              })}
+                            </ul>
+                            : <p>No ingredients yet</p>
+                          }
+
+                        <div className="button-container">
+                          <button
+                            key={index}
+                            className="btn btn-sm btn-default"
+                            style={{marginRight: "10px"}}
+                            onClick={(e) => {
+                              openDialog(dialogEditRecipe, recipe.id);
+                            }}>
+                            Edit
+                          </button>
+                          <button
+                            className="btn btn-sm btn-danger"
+                            onClick={(e) => openDialog(dialogDeleteRecipe, recipe.id)}>
+                            Delete
+                          </button>
+                        </div>
                       </div>
+
                     </div> : null }
 
                 {dialog.name === dialogEditRecipe && dialog.dialogOpened && selectedRecipeId === recipe.id ?

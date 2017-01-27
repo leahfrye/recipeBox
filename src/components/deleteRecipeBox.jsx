@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { closeDialog, setItemToChange } from "./../actions";
+import { setItemToChange } from "./../actions/changeRecipes";
+import { closeDialog } from "./../actions/dialogs";
 
 class DeleteRecipeBox extends Component {
 

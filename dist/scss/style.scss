@@ -20,10 +20,6 @@ h1, h3 {
   font-family: 'Pacifico', cursive;
 }
 
-h3 {
-  padding-bottom: 10px;
-}
-
 hr {
   border: 0;
   border-bottom: 1px dashed $medium-grey;
@@ -36,15 +32,19 @@ p {
 
 ul {
   padding-left: 0px;
+  padding-top: 10px;
   .recipe {
-    width: 540px;
-    float: left;
     list-style-type: none;
     padding: 25px;
     border: 1px solid $grey;
     margin-bottom: 30px;
     border-radius: 5px;
     box-shadow: 3px 3px 7px $light-grey;
+    .expand {
+      font-style: none;
+      float: right;
+      font-size: 30px;
+    }
     ul {
       margin-left: 0px;
       li {
@@ -54,6 +54,18 @@ ul {
         list-style-type: none;
         margin-bottom: 10px;
       }
+    }
+  }
+  h3 {
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .hoverStyle {
+    &:hover {
+      background-color: $medium-grey;
     }
   }
 }
@@ -96,4 +108,10 @@ label {
 
 .edit-recipe-dialog {
   margin: inherit;
+  .note {
+    font-style: italic;
+    font-size: 13px;
+    line-height: 7px;
+    margin-top: 5px;
+  }
 }

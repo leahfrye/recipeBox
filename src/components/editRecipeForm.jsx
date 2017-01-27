@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { closeDialog, editRecipe } from "./../actions";
+import { closeDialog } from "./../actions/dialogs";
+import { editRecipe } from "./../actions/changeRecipes";
 
 class EditRecipeForm extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class EditRecipeForm extends Component {
 
             <div className="form-group">
               <label>Ingredients</label>
+              <p className="note">Seperate with commas</p>
               <textarea
                 className="form-control"
                 ref={(node) => {ingredients = node}}
