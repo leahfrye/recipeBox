@@ -1,5 +1,4 @@
-const OPEN_DIALOG = "OPEN_DIALOG";
-const CLOSE_DIALOG = "CLOSE_DIALOG";
+import { OPEN_DIALOG, CLOSE_DIALOG } from "./actionTypes";
 
 export function openDialog(name, id) {
   return {

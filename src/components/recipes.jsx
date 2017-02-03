@@ -76,8 +76,6 @@ class Recipes extends Component {
       dialogDeleteRecipe
     } = this.props;
 
-    console.log(this.state.selectedIndex);
-
 
     let placeholderStyle = {
       backgroundColor: "blue"

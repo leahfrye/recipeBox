@@ -8,7 +8,7 @@ import {
   closeDialog
 } from "./../actions/changeRecipes";
 
-let reducer = (state, action) => {
+let reducer = (state = [], action) => {
 
   switch(action.type) {
 

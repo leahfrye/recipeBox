@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import { Router, Route, browserHistory } from "react-router";
 import createLogger from "redux-logger";
 import { createStore, applyMiddleware, compose } from "redux";
+import { syncHistoryWithStore } from "react-router-redux";
 
 import { Provider } from "react-redux";
 import "es5-shim";
 
 import App from './components/app';
-import reducer from "./reducers/reducer";
+import rootReducer from "./reducers/index";
 
 import recipes from "./data/recipes";
 
@@ -23,7 +24,7 @@ let initialState = {
 };
 
 let store = createStore(
-  reducer,
+  rootReducer,
   initialState,
   applyMiddleware(createLogger())
 );
@@ -31,7 +32,7 @@ let store = createStore(
 ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}></Route>
+      <Route path="/" component={App}/>
     </Router>
   </Provider>
 ), document.getElementById("main"));

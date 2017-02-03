@@ -1,17 +1,6 @@
-const SET_ITEM_TO_CHANGE = "SET_ITEM_TO_CHANGE";
-const ADD_RECIPE = "ADD_RECIPE";
-const EDIT_RECIPE = "EDIT_RECIPE";
-const DELETE_RECIPE = "DELETE_RECIPE";
+import { ADD_RECIPE, EDIT_RECIPE, DELETE_RECIPE } from "./actionTypes";
 
 const uid = () => Math.random().toString(34).slice(2);
-
-export function setItemToChange(typeOfChange, id) {
-    return {
-      type: SET_ITEM_TO_CHANGE,
-      typeOfChange,
-      id
-    }
-}
 
 export function addRecipe(name, ingredients) {
   return {

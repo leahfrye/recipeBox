@@ -32,9 +32,7 @@ module.exports = {
   devServer: {
     contentBase: "dist/",
     hot: true,
-    historyApiFallback: {
-      index: "/"
-    }
+    historyApiFallback: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
