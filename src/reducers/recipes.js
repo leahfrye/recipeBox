@@ -1,4 +1,4 @@
-import { merge } from "lodash";
+import { merge, filter } from "lodash";
 import { ADD_RECIPE, EDIT_RECIPE, DELETE_RECIPE } from "./../actions/actionTypes";
 
 let recipes = (state = {}, action) => {
@@ -21,12 +21,9 @@ let recipes = (state = {}, action) => {
 
     case "DELETE_RECIPE": {
       let newState = Object.assign([], state);
-      console.log(newState);
-      // filter not working
-      newState.filter((recipe) => {
-        return recipe.id !== action.id
+      newState = filter(newState, (recipe) => {
+        return recipe.id !== action.id;
       });
-      console.log(newState);
       return newState;
     }
 

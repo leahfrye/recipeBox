@@ -1,12 +1,12 @@
 let recipes = [
   {
     "id": 0,
-    "name": "Applie Pie",
+    "name": "Apple Pie - Delete this recipe and start your own!",
     "ingredients": ["flour", "eggs", "apples", "milk"]
   },
   {
     "id": 1,
-    "name": "Brownies",
+    "name": "Brownies - Delete this recipe and start your own!",
     "ingredients": ["flour", "eggs", "cocoa powder", "milk"]
   },
 ];

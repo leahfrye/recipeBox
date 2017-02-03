@@ -4,17 +4,20 @@ import { Router, Route, browserHistory } from "react-router";
 import createLogger from "redux-logger";
 import { createStore, applyMiddleware, compose } from "redux";
 import { syncHistoryWithStore } from "react-router-redux";
-
+import { loadState, saveState } from "./localStorage";
 import { Provider } from "react-redux";
 import "es5-shim";
 
-import App from './components/app';
+import App from "./components/app";
+import NewRecipeForm from "./components/newRecipeForm";
 import rootReducer from "./reducers/index";
 
 import recipes from "./data/recipes";
 
 require("./../dist/scss/style.scss");
 
+let state = {};
+let savedState = loadState();
 let initialState = {
   recipes,
   dialog: {
@@ -23,11 +26,24 @@ let initialState = {
   }
 };
 
+if (savedState.recipes.length > 0) {
+  state = loadState();
+}
+else {
+  state = initialState;
+}
+
 let store = createStore(
   rootReducer,
-  initialState,
+  state,
   applyMiddleware(createLogger())
 );
+
+store.subscribe(() => {
+  saveState({
+    recipes: store.getState().recipes
+  });
+});
 
 ReactDOM.render((
   <Provider store={store}>
