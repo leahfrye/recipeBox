@@ -26,10 +26,9 @@
 ### Tools used
 
 + ***node***: https://nodejs.org/
-+ ***express***: https://nodejs.org/
-+ ***atom***: http://expressjs.com/
++ ***redux***: https://redux.js.org/
 + ***webpack***: https://webpack.github.io/
 + ***react***: https://facebook.github.io/react/
 + ***bootstrap***: http://getbootstrap.com/
 + ***sass***: http://sass-lang.com/
-+ ***fetch*** https://github.com/github/fetch
++ ***lodash***: http://lodash.com/
