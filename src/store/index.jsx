@@ -1,9 +1,8 @@
-import { loadState, saveState } from "./../localStorage";
+import { loadState, saveState } from "./localStorage";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./../reducers/index";
 import createLogger from "redux-logger";
 import recipes from ".././data/recipes";
-
 let state = {};
 let savedState = loadState();
 let initialState = {
@@ -14,7 +13,7 @@ let initialState = {
   }
 };
 
-if (savedState.recipes.length > 0) {
+if (savedState && savedState.recipes.length > 0) {
   state = loadState();
 }
 else {

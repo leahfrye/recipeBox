@@ -1,0 +1,86 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);body {
+  margin-top: 40px; }
+
+h1 {
+  margin-bottom: -15px;
+  color: #801638; }
+
+h1, h3 {
+  font-family: 'Pacifico', cursive; }
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+  margin-bottom: 30px; }
+
+p {
+  font-size: 20px; }
+
+ul {
+  padding-left: 0px;
+  padding-top: 10px; }
+  ul .recipe {
+    list-style-type: none;
+    padding: 25px;
+    border: 1px solid #dbdbdb;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 7px #ededed; }
+    ul .recipe .expand {
+      font-style: none;
+      float: right;
+      font-size: 30px; }
+    ul .recipe ul {
+      margin-left: 0px; }
+      ul .recipe ul li {
+        padding: 2px 2px 2px 10px;
+        margin-left: 0px;
+        font-size: 20px;
+        list-style-type: none;
+        margin-bottom: 10px; }
+  ul h3 {
+    cursor: pointer;
+    user-select: none; }
+    ul h3:hover {
+      text-decoration: underline; }
+  ul .hoverStyle:hover {
+    background-color: #ccc; }
+
+label {
+  font-family: 'Pacifico', cursive;
+  font-size: 20px; }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: black;
+  opacity: .6; }
+
+.add-recipe-modal-dialog {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  margin-top: 10%; }
+
+.add-recipe-modal-content {
+  width: 600px;
+  text-align: left;
+  padding: 5px 10px 10px 10px; }
+
+.button-container {
+  padding-top: 12px; }
+
+.edit-recipe-dialog {
+  margin: inherit; }
+  .edit-recipe-dialog .note {
+    font-style: italic;
+    font-size: 13px;
+    line-height: 7px;
+    margin-top: 5px; }
