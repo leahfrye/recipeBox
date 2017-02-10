@@ -28,6 +28,7 @@ View here: https://aqueous-mountain-32776.herokuapp.com/
 ### Tools used
 
 + ***node***: https://nodejs.org/
++ ***express***: http://expressjs.com/
 + ***redux***: https://redux.js.org/
 + ***webpack***: https://webpack.github.io/
 + ***react***: https://facebook.github.io/react/
